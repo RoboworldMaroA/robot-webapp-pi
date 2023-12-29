@@ -1,0 +1,88 @@
+Open terminal and past this code:
+//development allow you to update in realtime webapp
+
+
+
+Raspberry pi4
+Activate Virtual env tflow1-env (version1)
+cd ~
+cd /home/pi/tflite1
+source tflite1-env/bin/activate
+
+
+Go to folder with the programs:
+
+cd ~
+cd webapp_robot
+
+python3 robot_webapp_v2.py
+
+python3 robot_webapp.py
+
+
+Use Sonar only:
+
+python3 sonar_measure_distance.py
+
+
+
+
+Open website in Chromium otherwise pi will be frozen
+http://127.0.0.1:5000/
+
+
+OR
+
+Use code editor for update app
+Open terminal
+
+code and hit enter
+
+
+
+
+
+
+
+
+
+
+
+
+
+THIS IS FOR RASPBERRY PI3
+
+cd ~
+source webapp_robot/bin/activate
+cd webapp_robot
+export FLASK_APP=robot_webapp.py
+export FLASK_ENV=development
+flask run
+
+
+
+Nowe uruchamianie: uruchamiam web app using command inside python script.
+New version, activate web app inside the robot_webapp instead of seperate command in bash
+Open terminal:
+
+//this aaplication inlude code for auto drive
+cd ~
+source webapp_robot/bin/activate
+cd webapp_robot
+python3 robot_webapp_autodrive.py
+
+or 
+
+//previous version
+python3 robot_webapp.py
+
+
+
+
+Running line tracker only:
+Open Terminal and paste this code
+
+cd ~
+source webapp_robot/bin/activate
+cd webapp_robot
+python3 lineTracker.py

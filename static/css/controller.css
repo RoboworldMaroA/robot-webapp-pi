@@ -1,0 +1,397 @@
+body,td,th {
+    color: #00020A;
+    background-color: #000000;}
+
+#whole-website{
+	width:100%;
+    height: Auto;
+}
+
+
+/* ############################################### */
+/* buttons for driving robot  */
+#auto-drive{
+    margin-right: 3%;
+}
+
+
+
+#robot-controller{
+	background-color: black;
+    font-size:1.2em;
+    color: grey;
+}
+
+#topPartDrivingController{
+    padding-left: 5.0em;
+}
+
+#middlePartDrivingController{
+    padding-left: 2.3em;
+}
+
+#bottomPartDrivingController{
+    padding-left:5.0em;
+}
+
+
+.button-forward{
+    border: none;
+    color: white;
+    padding: 0.1% 0.1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.8em;
+    margin: 0.4% 0.2%;
+    cursor: pointer;
+    background-color: #000000;
+
+    width: 0;
+    height: 0;
+    border-left: 3em solid transparent;
+    border-right: 3em solid transparent;
+    border-bottom: 3em solid green;
+
+}
+
+
+.button-down{
+    border: none;
+    color: white;
+    padding: 0.1% 0.1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.8em;
+    margin: 0.4% 0.2%;
+    cursor: pointer;
+    background-color: #000000;
+
+    width: 0;
+    height: 0;
+    border-left: 3em solid transparent;
+    border-right: 3em solid transparent;
+    border-top: 3em solid purple;
+}
+
+.button-left{
+    border: none;
+    color: white;
+    padding: 0.1% 0.1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.8em;
+    margin: 0.4% 0.2%;
+    cursor: pointer;
+    background-color: #000000;
+
+    width: 0;
+    height: 0;
+    border-top: 3em solid transparent;
+    border-right: 3em solid blue;
+    border-bottom: 3em solid transparent;
+}
+
+
+.button-stop {
+    color: white;
+    padding: 0.1% 0.1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.8em;
+    margin: 0.2% 0.2%;
+    cursor: pointer;
+
+    width: 0;
+    height: 0;
+    border-left: 3em solid red;
+    border-right: 3em solid red;
+    border-bottom: 3em solid red;
+    border-top: 3em solid red;
+}
+
+.button-right{
+    border: none;
+    color: white;
+    padding: 0.0% 0.0%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.8em;
+    margin: 0.2% 0.2%;
+    cursor: pointer;
+    background-color: #000000;
+
+    width: 0;
+    height: 0;
+    border-top: 3em solid transparent;
+    border-left: 3em solid blue;
+    border-bottom: 3em solid transparent;
+}
+
+/* end css for buttons to control robot*/
+/* ############################################### */
+
+#camera-view{
+    padding: 1px;
+}
+
+/* ############################################### */
+/* buttons for driving robot  */
+#camera-controller{
+    background-color: black;
+    font-size:1.2em;
+    color: grey;
+}
+
+#camera-on{
+    margin-right: 39%;
+}
+
+
+
+#top-part-camera{
+    padding-left: 6em;
+}
+
+#middle-part-camera{
+    padding-left: 3.3em;
+}
+
+#bottom-part-camera{
+    padding-left:6em;
+}
+
+
+
+
+
+.button-camera-up{
+    border: none;
+    color: white;
+    padding: 0.1% 0.1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.8em;
+    margin: 0.4% 0.2%;
+    cursor: pointer;
+    background-color: #000000;
+
+    width: 0;
+    height: 0;
+    border-left: 3em solid transparent;
+    border-right: 3em solid transparent;
+    border-bottom: 3em solid green;
+
+}
+
+
+.button-camera-down{
+    border: none;
+    color: white;
+    padding: 0.1% 0.1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.8em;
+    margin: 0.4% 0.2%;
+    cursor: pointer;
+    background-color: #000000;
+
+    width: 0;
+    height: 0;
+    border-left: 3em solid transparent;
+    border-right: 3em solid transparent;
+    border-top: 3em solid purple;
+}
+
+.button-camera-left{
+    border: none;
+    color: white;
+    padding: 0.1% 0.1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.8em;
+    margin: 0.4% 0.2%;
+    cursor: pointer;
+    background-color: #000000;
+
+    width: 0;
+    height: 0;
+    border-top: 3em solid transparent;
+    border-right: 3em solid blue;
+    border-bottom: 3em solid transparent;
+}
+
+
+.button-camera-home {
+    color: white;
+    padding: 0.1% 0.1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.8em;
+    margin: 0.2% 0.2%;
+    cursor: pointer;
+
+    width: 0;
+    height: 0;
+    border-left: 3em solid red;
+    border-right: 3em solid red;
+    border-bottom: 3em solid red;
+    border-top: 3em solid red;
+}
+
+.button-camera-right{
+    border: none;
+    color: white;
+    padding: 0.0% 0.0%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.8em;
+    margin: 0.2% 0.2%;
+    cursor: pointer;
+    background-color: #000000;
+
+    width: 0;
+    height: 0;
+    border-top: 3em solid transparent;
+    border-left: 3em solid blue;
+    border-bottom: 3em solid transparent;
+}
+
+/* end css for buttons to control camera */
+/* ############################################### */
+
+
+
+#main_content {
+    background-color:#000000;
+    margin-top: 25px;
+    color: aliceblue
+    }
+
+
+
+
+
+
+#main_content_index {
+    
+    background-color:#000000;
+    color: aliceblue
+    }
+
+
+
+/* carusele used bootrap */
+
+#caruzela {
+    background-color: #000000;
+    margin-top: 65px;
+    margin-bottom: 65px;
+}
+
+
+a {
+    color: aliceblue
+ }
+
+
+#carouselExampleIndicators {
+    
+    border-color: aqua
+}
+   
+
+/* footer */
+
+#footer{
+    padding-top: 5px;
+	margin-top: 30px;
+	margin-left: 30px;
+	text-align: justify;
+	float: right;
+	background-color:#0f0504;
+	font-size:0.7em;
+	color:#737373;
+  
+}
+
+#footerMid{
+	padding-left: 50px;
+    
+
+}
+
+#footerRight{
+   
+   padding-left: 50px;
+
+}
+#footerRight p{
+   
+   padding-top: 20px;
+
+}
+	
+#footer h6{ 
+    padding-left: 30px;
+	text-align: center;
+	color: white;
+	font-size:1.0em;
+	text-transform:uppercase;
+	margin-top:2px;
+	letter-spacing:2px;
+}
+
+
+#footer li{
+    text-align: center;
+	list-style-type: none;
+}
+
+
+/* social media */
+.fa {
+  margin-right: 15px;
+  padding: 10px;
+  font-size: 1px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
+  margin-top: 20px;
+}
+
+
+
+.fa:hover {
+    opacity: 0.7;
+}
+

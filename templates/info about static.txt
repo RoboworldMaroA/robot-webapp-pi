@@ -1,0 +1,2 @@
+I have to move static files to the folder static in main folder webapp_robot, it is necessary to flask 
+same for css and java scipt

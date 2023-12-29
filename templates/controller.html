@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+      
+    <title>Controller to Mobile Robot</title>
+   
+		<meta charset="utf-8">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Optimisation keywords-->
+		<meta name="keywords" content="mobile robots, robotics, vision system ">
+		<meta name=”description” content="Roboworl and this web app is for lovers robotics">
+		<!-- getbootstrap.com -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+		
+		
+		<!--******************************************-->
+		
+		<!-- 3 DIFFRENT EXTERNAL CSS STYLES TO HOME PAGE MAREK, COLM, ADAM -->
+		<link href="static/css/controller.css" rel="stylesheet" type="text/css">
+	
+		
+		<!--******************************************-->
+		
+		
+		<!-- javacript to validation allerts -->
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		
+		<!-- Font Type from google-->
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">  
+		<!--SOCIAL MEDIA ICONS-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!-- Cookies used creator cookies from https://www.osano.com -->
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+		
+
+	</head>
+
+
+  <body>
+  
+  
+ 
+  
+  
+  
+  
+ <div class="container-fluid" id ="whole-website"  >
+     <!--Dropdown menu for different style of the application  -->
+     <div class="container">
+         <div class="dropdown">
+             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 Dropdown button
+             </button>
+             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                 <a class="dropdown-item" href="#">Modern</a>
+                 <a class="dropdown-item" href="#">Retro</a>
+                 <a class="dropdown-item" href="#">Future</a>
+                 <a class="dropdown-item" href="about.html">About</a>
+             </div>
+         </div>
+     </div>
+
+
+
+     <div class="container-fluid" id="main_content_index">
+
+     <p>I It is application to control mobile robot design and built by Marek Augustyn.
+         Application was done using HTML, CSS, JavaScript and Python with FLASK.</p>
+     </div>
+
+	  <ul class="">
+	      
+        <li><a href="controller.html">Run a Car forward</a></>
+        <li><a href="stop.html">Stop </a></li>
+        <li><a href="backward.html">Reverse</a></li>
+        <li><a href="turn_left.html">Turn Left</a></li>
+        <li><a href="turn_right.html">Turn Right</a></li>
+
+      </ul>
+
+     <!-- three columns with control to driving a robot camera view and controller for camera
+     I am using bootstrap with three columns
+     -->
+
+     <!-- sample bootstrap 3 columns-->
+     <!--
+     <div class="container">
+         <div class="row">
+             <div class="col-sm">
+                 One of three columns
+             </div>
+             <div class="col-sm">
+                 One of three columns
+             </div>
+             <div class="col-sm">
+                 One of three columns
+             </div>
+         </div>
+     </div>
+        -->
+
+
+
+
+
+
+
+
+     <div class="container" id="controller-camera-view-rotate-camera">
+
+         <div class="row">
+             <div class="col-sm">
+                 <!--One of three columns
+                 Controller for driving robot-->
+
+                 <div id="robot-controller">
+
+                     <div><a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="auto-drive"> Auto Drive </a>
+                         <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="control-by-keyboard"> Control By Keyboard </a>
+                     </div>
+
+                     <div id="top-part">
+                        <button type="button" class="button-forward" onclick="window.location.href='controller.html'">   <a href="controller.html" > GO </a></button>
+                     </div>
+                     <div id="middle-part">
+
+
+                         <button type="button" class="button-left" onclick="window.location.href='turn_left.html'"> <a href="turn_left.html" > L </a></button>
+                         <button type="button" class = "button-stop" onclick="window.location.href='stop.html'"><a href="stop.html" > STOP</a></button> 
+                        
+                         <button type="button" class="button-right" onclick="window.location.href='turn_right.html'"> <a href="turn_right.html" > R</a> </button>
+
+                     </div><!-- end middle div-->
+
+                     <div id="bottom-part">
+                        
+                         <button type="button" class="button-down" onclick="window.location.href='backward.html'" ><a href="backward.html" > Reverse </a> </button>
+                     </div>
+
+                     <!-- pick how fast ca will be moving-->
+                     <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="speed-option"> Speed </a></li>
+                     <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="slow"> Slow </a></li>
+                     <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="normal"> Normal </a></li>
+                     <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="fast"> Fast </a></li>
+
+
+                 </div><!--End of class robot-controller for motion-->
+             </div><!-- End of the 1st column, robot move -->
+
+
+
+             <div class="col-sm">
+                 <!--2nd  of three columns
+                 Here will be camera view-->
+                 <div><a href="/camera.html" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="camera-on"> Camera ON </a>
+                     <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="camera-off"> Camera OFF </a>
+                 </div>
+
+                 <div id="camera-view">
+                     
+                     <!-- test this -->
+                     <!-- <iframe width="480" height="355" src="http://picamhq:8080/?action=stream"></iframe>-->
+                     <iframe width="480" height="355" src="{{ url_for('camera_on') }}"  src="http://picamhq:8080/?action=stream"></iframe>-
+                     <!--<img src="{{ url_for('camera_on') }}" width="50%">-->
+                     <!-- test this -->
+                     <!--<p id="streamwrap" class="xform-p">
+                         <img id="streamimage" class="xform" src="/?action=stream">
+                     </p>-->
+
+                 </div>
+             </div> <!-- End of the 2nd column, robot move -->
+
+             <!-- controller for camera -->
+             <div class="col-sm">
+                 <!--3rd  of three columns
+                 Controller for camera-->
+                 <div><a href="follow-object.html" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="follow-object"> Follow object </a>
+                     <a href="camera-control-by-keyboard" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="camera-control-by-keyboard"> Control By Keyboard </a>
+                 </div>
+                 <div id="camera-controller">
+                     <div id="top-part-camera">
+                         <!--<a href="controller.html" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="forward-button"> GO</a>-->
+                         <button class="button-camera-up" href="camera-up.html" > Camera UP </button>
+                     </div>
+                     <div id="middle-part-camera">
+
+
+                         <!--<a href="turn_left.html" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="left-button"> LEFT</a>-->
+                         <button class="button-camera-left" href="camera_left.html" > Camera L </button>
+                         <!--<div id="left-button"> L-->
+                         <button class = "button-camera-home" href="camera_home_position.html"  > HOME</button>
+                         <!--<a href="turn_right.html" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="right-button"> RIGHT</a>-->
+                         <button class="button-camera-right" href="camera_right.html" > Camera R </button>
+
+                     </div><!-- end middle div-->
+
+                     <div id="bottom-part-camera">
+                         <!--<a href="backward.html" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="backward-button"> BACKWARD</a>-->
+                         <button class="button-camera-down" href="camera_down.html" > Down </button>
+                     </div>
+
+                     <!-- pick how fast ca will be moving-->
+                     <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="camera-speed-option"> Speed </a></li>
+                     <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="camera-slow"> Slow </a></li>
+                     <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="camera-normal"> Normal </a></li>
+                     <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="camera-fast"> Fast </a></li>
+
+
+                 </div><!--End of class robot-controller for motion-->
+
+
+
+
+             </div><!-- end 3rd column-->
+         </div><!-- end row-->
+     </div><!-- end of container first part of application, controller robot, camera view, controller camera-->
+
+<!-- additional buttons with speaker on off, speed , lights, sensor status and intelligent programmed options-->
+     <div class="container-fluid" id="additional-options">
+         <div><a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="speaker-on-off"> Speaker on/off </a>
+             <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="light-on-off"> Lights On/Off </a>
+             <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="auto-light-on-off"> Auto Lights On/Off </a>
+
+
+
+
+
+         </div>
+
+
+
+
+
+     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     </div>
+  <!-- description web app -->
+     
+   <div class="container-fluid" id="main">
+             <p>ble ble ble</p>
+
+
+   </div>
+
+        <footer class="col-lg-12 col-sm-offset-1 col-sm-12 col-md-offset-0 col-md-12" id="footer">
+          <p>Roboworld - Application created by Software Engineer Marek Augustyn</p>
+        </footer>
+
+
+
+
+<!-- Java script BOOTSTRAP SCRIPT-->
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
