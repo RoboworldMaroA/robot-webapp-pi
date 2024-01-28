@@ -9,6 +9,9 @@ cd ~
 cd /home/pi/tflite1
 source tflite1-env/bin/activate
 
+type code it will open visual studio code:
+code
+
 
 Go to folder with the programs:
 
@@ -22,9 +25,17 @@ python3 robot_webapp.py
 
 Use Sonar only:
 
+
+
+
+
 python3 sonar_measure_distance.py
 
+python3 sonar_measure_distance_v2.py
 
+sonar in loop
+
+python3 sonar_measure_loop.py
 
 
 Open website in Chromium otherwise pi will be frozen
@@ -41,9 +52,15 @@ code and hit enter
 
 
 
+Use Voice Recognize
+Start, Stop, Go , left, Rigth
 
+activate virtual env and then:
 
+cd ..
+cd freecodecamp_Tensorflow
 
+cd env10Tensorflow/
 
 
 

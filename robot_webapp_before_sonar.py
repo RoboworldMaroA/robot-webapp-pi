@@ -1,6 +1,7 @@
 # 4dc controle by webapp using FLASK
+# This is old version before I change urls camera.html
+# for sample before was turn_right.html now is just turn_right
 #
-
 import curses
 import RPi.GPIO as GPIO
 from flask import Flask, render_template, url_for, request, redirect, Response, stream_with_context
