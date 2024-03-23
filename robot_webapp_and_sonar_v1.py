@@ -33,7 +33,7 @@ enb = 22
 GPIO_TRIGGER = 20
 GPIO_ECHO = 21
 
-#Setap for DC motors
+#Setup for DC motors
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(in1,GPIO.OUT)
 GPIO.setup(in2,GPIO.OUT)
@@ -197,6 +197,7 @@ if __name__ == '__main__':
     
                 @app.route('/forward')
                 def forward(username=None, post_id=None):
+                    GPIO.setmode(GPIO.BCM)
                     print("forw 1")
                     dist2 = distance()
                     print(dist2)
@@ -214,7 +215,7 @@ if __name__ == '__main__':
                         print("forw 2")
                         dist3 =  distance()
                         print(dist3)
-                    if dist2 < 40:
+                    if dist2 < 20:
                         print("too close the obstacle")
                         GPIO.output(in1,GPIO.LOW)
                         GPIO.output(in2,GPIO.LOW)
@@ -225,7 +226,55 @@ if __name__ == '__main__':
                         
                     return render_template('./camera.html', name=username)
 
+                @app.route('/forward2')
+                def forward2(username=None, post_id=None):
+                    GPIO.setmode(GPIO.BCM)
+                    print("display value of the first distance")
+                    print(dist)
 
+                    print("forw 11")
+                    dist2 = distance()
+                    print(dist2)
+
+
+
+                    while dist2 > 21:
+                        print("run forward -u pressed up")
+                        GPIO.output(in1,GPIO.LOW)
+                        GPIO.output(in2,GPIO.HIGH)
+                        p1.ChangeDutyCycle(15)
+                     
+
+                        GPIO.output(in3,GPIO.LOW)
+                        GPIO.output(in4,GPIO.HIGH)
+                        p2.ChangeDutyCycle(15)
+                     
+                        print("forw 22")
+                        dist3 =  distance()
+                        print(dist3)
+                        if dist3 < 10:
+                            print("too close the obstacle")
+                            GPIO.output(in1,GPIO.LOW)
+                            GPIO.output(in2,GPIO.LOW)
+                            GPIO.output(in3,GPIO.LOW)
+                            GPIO.output(in4,GPIO.LOW)
+                            p1.ChangeDutyCycle(0)
+                            p2.ChangeDutyCycle(0)
+                            dist3 = 41
+                            dist2 = 41
+                            break
+                    
+                    print("too close the obstacle out of loop")
+                    GPIO.output(in1,GPIO.LOW)
+                    GPIO.output(in2,GPIO.LOW)
+                    GPIO.output(in3,GPIO.LOW)
+                    GPIO.output(in4,GPIO.LOW)
+                    dist4 =  distance()
+                    print("Dist4 ")
+                    print(dist4)
+                        
+                    return render_template('./camera.html', name=username)
+                
                 @app.route('/stop')
                 def stop(username=None, post_id=None):
                     print("run forward -u pressed up")
