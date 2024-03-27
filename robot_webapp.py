@@ -1,4 +1,4 @@
-# 4dc controle by webapp using FLASK
+# 4dc controled by webapp using FLASK
 #
 
 import curses
