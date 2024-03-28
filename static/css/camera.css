@@ -8,12 +8,25 @@ body,td,th {
 }
 
 
+/* Style for menu with the styles of the web */
+#mode-menu{
+margin-top: 5%;
+margin-bottom: 5%;
+
+}
+
 /* ############################################### */
 /* buttons for driving robot  */
 #auto-drive{
     margin-right: 3%;
+    background-color: #737373;
 }
 
+
+#control-by-keyboard{
+
+    background-color: #737373;
+}
 
 
 #robot-controller{
@@ -24,14 +37,17 @@ body,td,th {
 
 #topPartDrivingController{
     padding-left: 5.0em;
+    
 }
 
 #middlePartDrivingController{
     padding-left: 2.3em;
+   
 }
 
 #bottomPartDrivingController{
     padding-left:5.0em;
+    
 }
 
 #text-in-button-go {
@@ -55,7 +71,7 @@ body,td,th {
     height: 0;
     border-left: 3em solid transparent;
     border-right: 3em solid transparent;
-    border-bottom: 3em solid rgb(35, 35, 155);
+    border-bottom: 3em solid #737373;
 
 }
 
@@ -76,7 +92,7 @@ body,td,th {
     height: 0;
     border-left: 3em solid transparent;
     border-right: 3em solid transparent;
-    border-top: 3em solid rgb(35, 35, 155);
+    border-top: 3em solid #737373;
 }
 
 .button-left{
@@ -94,7 +110,7 @@ body,td,th {
     width: 0;
     height: 0;
     border-top: 3em solid transparent;
-    border-right: 3em solid rgb(35, 35, 155);
+    border-right: 3em solid #737373;
     border-bottom: 3em solid transparent;
 }
 
@@ -111,10 +127,10 @@ body,td,th {
 
     width: 0;
     height: 0;
-    border-left: 3em solid rgb(124, 38, 38);
-    border-right: 3em solid rgb(124, 38, 38);
-    border-bottom: 3em solid rgb(124, 38, 38);
-    border-top: 3em solid rgb(124, 38, 38);
+    border-left: 3em solid #4a4a4d;
+    border-right: 3em solid #4a4a4d;
+    border-bottom: 3em solid #4a4a4d;
+    border-top: 3em solid #4a4a4d;
 }
 
 .button-right{
@@ -132,7 +148,7 @@ body,td,th {
     width: 0;
     height: 0;
     border-top: 3em solid transparent;
-    border-left: 3em solid rgb(35, 35, 155);
+    border-left: 3em solid #737373;
     border-bottom: 3em solid transparent;
 }
 
@@ -152,9 +168,9 @@ body,td,th {
 }
 
 #camera-on{
-    margin-left: 30%;
+    margin-left: 24%;
     margin-bottom: 5%;
-    
+    background-color: #737373; 
 }
 
 
@@ -191,7 +207,7 @@ body,td,th {
     height: 0;
     border-left: 3em solid transparent;
     border-right: 3em solid transparent;
-    border-bottom: 3em solid rgb(35, 35, 155);
+    border-bottom: 3em solid #737373;
 
 }
 
@@ -212,7 +228,7 @@ body,td,th {
     height: 0;
     border-left: 3em solid transparent;
     border-right: 3em solid transparent;
-    border-top: 3em solid rgb(35, 35, 155);
+    border-top: 3em solid #737373 ;
 }
 
 .button-camera-left{
@@ -230,7 +246,7 @@ body,td,th {
     width: 0;
     height: 0;
     border-top: 3em solid transparent;
-    border-right: 3em solid rgb(35, 35, 155);
+    border-right: 3em solid #737373;
     border-bottom: 3em solid transparent;
 }
 
@@ -247,10 +263,10 @@ body,td,th {
 
     width: 0;
     height: 0;
-    border-left: 3em solid rgb(124, 38, 38);
-    border-right: 3em solid rgb(124, 38, 38);
-    border-bottom: 3em solid rgb(124, 38, 38);
-    border-top: 3em solid rgb(124, 38, 38);
+    border-left: 3em solid #4a4a4d;
+    border-right: 3em solid #4a4a4d;
+    border-bottom: 3em solid #4a4a4d;
+    border-top: 3em solid #4a4a4d;
 }
 
 .button-camera-right{
@@ -268,7 +284,7 @@ body,td,th {
     width: 0;
     height: 0;
     border-top: 3em solid transparent;
-    border-left: 3em solid rgb(35, 35, 155);
+    border-left: 3em solid #737373;
     border-bottom: 3em solid transparent;
 }
 
@@ -284,9 +300,21 @@ body,td,th {
     }
 
 
+    #slow{
+
+        background-color: #737373;
+    }
+
+    #normal{
+
+        background-color: #737373;
+    }
 
 
+    #fast{
 
+        background-color: #737373;
+    }
 
 #main_content_index {
     
@@ -301,11 +329,26 @@ a {
  }
 
 
-#carouselExampleIndicators {
-    
-    border-color: aqua
-}
    
+
+
+/* Part with the on/off buttons */
+
+
+
+#speaker-on-off{
+    background-color: #737373;
+
+}
+
+#light-on-off{
+    background-color: #737373; 
+}
+
+#auto-light-on-off{
+background-color: #737373; 
+}
+
 
 /* footer */
 
@@ -313,7 +356,7 @@ a {
     padding-top: 5px;
 	margin-top: 30px;
 	margin-left: 30px;
-	text-align: justify;
+	text-align: center;
 	float: right;
 	background-color:#0f0504;
 	font-size:0.7em;
@@ -366,25 +409,7 @@ a {
   border-radius: 50%;
 }
 
-.fa-facebook {
-  background: #3B5998;
-  color: white;
-  margin-right: 10px;
-  margin-top: 20px;
-}
 
-.fa-youtube {
-  background: #bb0000;
-  color: white;
-  margin-right: 10px;
-  margin-top: 20px;
-}
-
-.fa-instagram {
-  background: #125688;
-  color: white;
-  margin-top: 20px;
-}
 
 
 
