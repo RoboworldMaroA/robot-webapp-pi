@@ -42,7 +42,7 @@ margin-bottom: 5%;
 }
 
 #middlePartDrivingController{
-    padding-left: 2.3em;
+    padding-left: 2.4em;
    
 }
 
@@ -59,7 +59,7 @@ margin-bottom: 5%;
 .button-forward{
     border: none;
     color: white;
-    padding: 1% 1% ;
+    padding: 0.0% 0.4% ;
     text-align: left;
     text-decoration: none;
     display: inline-block;
@@ -99,12 +99,12 @@ margin-bottom: 5%;
 .button-left{
     border: none;
     color: white;
-    padding: 0.1% 0.1%;
+    padding: 0.0% 0.0%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 0.8em;
-    margin: 0.4% 0.2%;
+    margin: 0.0% 0.0%;
     cursor: pointer;
     background-color: #000000;
 
@@ -118,12 +118,12 @@ margin-bottom: 5%;
 
 .button-stop {
     color: white;
-    padding: 0.1% 0.1%;
+    padding: 0.0% 0.0%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 0.8em;
-    margin: 0.2% 0.2%;
+    margin: 0.0% 0.0%;
     cursor: pointer;
 
     width: 0;
@@ -142,7 +142,7 @@ margin-bottom: 5%;
     text-decoration: none;
     display: inline-block;
     font-size: 0.8em;
-    margin: 0.2% 0.2%;
+    margin: 0.0% 0.0%;
     cursor: pointer;
     background-color: #000000;
 
@@ -178,7 +178,7 @@ margin-bottom: 5%;
 
 #camera-button{
     border: none;
-    margin-left: 0%;
+    margin-right: 5%;
     margin-bottom: 0%;
     background-color: #737373; 
 }
@@ -191,15 +191,15 @@ margin-bottom: 5%;
 }
 
 #top-part-camera{
-    padding-left: 6em;
+    padding-left: 6.2em;
 }
 
 #middle-part-camera{
-    padding-left: 3.3em;
+    padding-left: 3.5em;
 }
 
 #bottom-part-camera{
-    padding-left:6em;
+    padding-left:6.2em;
 }
 
 
@@ -405,6 +405,19 @@ a {
     border: none;
 background-color: #737373; 
 }
+
+
+
+
+/* Constainer additional options */
+#additional-options{
+
+    margin-left: 6%;
+    margin-top: 3%;
+}
+
+
+
 
 
 /* footer */
