@@ -18,13 +18,14 @@ margin-bottom: 5%;
 /* ############################################### */
 /* buttons for driving robot  */
 #auto-drive{
+    border: none;
     margin-right: 3%;
     background-color: #737373;
 }
 
 
 #control-by-keyboard{
-
+    border: none;
     background-color: #737373;
 }
 
@@ -162,18 +163,32 @@ margin-bottom: 5%;
 /* ############################################### */
 /* buttons for driving robot  */
 #camera-controller{
+    border: none;
     background-color: black;
     font-size:1.2em;
     color: rgb(7, 0, 0);
 }
 
 #camera-on{
+    border: none;
     margin-left: 24%;
     margin-bottom: 5%;
     background-color: #737373; 
 }
 
+#camera-button{
+    border: none;
+    margin-left: 0%;
+    margin-bottom: 0%;
+    background-color: #737373; 
+}
 
+#control-camera-by-keyboard{
+    border: none;
+    margin-left: 0%;
+    margin-bottom: 0%;
+    background-color: #737373; 
+}
 
 #top-part-camera{
     padding-left: 6em;
@@ -299,22 +314,61 @@ margin-bottom: 5%;
     color: aliceblue
     }
 
+    #speed-driving-mode{
+        margin-top: 5%;
+
+    }
 
     #slow{
-
+        border: none;
         background-color: #737373;
+        margin-right: 9%;
     }
 
     #normal{
 
         background-color: #737373;
+        border: none;
+        margin-right: 9%;
     }
 
 
     #fast{
 
         background-color: #737373;
+        border: none;
     }
+
+
+
+#camera-speed-buttons{
+    margin-top: 5%;
+}
+
+
+
+
+    #camera-slow{
+
+        background-color: #737373;
+        border: none;
+        margin-right: 9%;
+    }
+
+    #camera-normal{
+
+        background-color: #737373;
+        border: none;
+        margin-right: 9%;
+    }
+
+
+    #camera-fast{
+
+        background-color: #737373;
+        border: none;
+    }
+
 
 #main_content_index {
     
@@ -337,15 +391,18 @@ a {
 
 
 #speaker-on-off{
+    border: none;
     background-color: #737373;
 
 }
 
 #light-on-off{
+    border: none;
     background-color: #737373; 
 }
 
 #auto-light-on-off{
+    border: none;
 background-color: #737373; 
 }
 

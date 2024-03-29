@@ -98,12 +98,12 @@
                          <button type="button" class="button-down" onclick="window.location.href='backward'" > </button>
                      </div>
 
-                     <!-- pick how fast ca will be moving-->
-                     <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="slow"> Slow </a></li>
-                     <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="normal"> Normal </a></li>
-                     <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="fast"> Fast </a></li>
-
-
+                     <!-- pick how fast car will be moving-->
+                    <div id="speed-driving-mode">
+                        <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="slow"> Slow </a></li>
+                        <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="normal"> Normal </a></li>
+                        <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="fast"> Fast </a></li>
+                    </div>
                  </div><!--End of class robot-controller for motion-->
              </div><!-- End of the 1st column, robot move -->
 
@@ -129,8 +129,8 @@
              <div class="col-sm">
                  <!--3rd  of three columns
                  Controller for camera-->
-                 <div><a href="follow-object.html" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="follow-object"> Camera </a>
-                     <a href="camera-control-by-keyboard" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="camera-control-by-keyboard"> Camera by Keyboard </a>
+                 <div><a href="camera_on_of.html" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="camera-button"> Camera </a>
+                     <a href="camera-control-by-keyboard" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="control-camera-by-keyboard"> Camera by Keyboard </a>
                  </div>
                  <div id="camera-controller">
                      <div id="top-part-camera">
@@ -155,10 +155,11 @@
                      </div>
 
                      <!-- pick how fast ca will be moving-->
-                    
-                     <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="camera-slow"> Slow </a></li>
-                     <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="camera-normal"> Normal </a></li>
-                     <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="camera-fast"> Fast </a></li>
+                     <div id="camera-speed-buttons">
+                        <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="camera-slow"> Slow </a></li>
+                        <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="camera-normal"> Normal </a></li>
+                        <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="camera-fast"> Fast </a></li>
+                    </div>
 
 
                  </div><!--End of class robot-controller for motion-->
