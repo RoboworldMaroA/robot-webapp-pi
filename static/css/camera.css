@@ -412,8 +412,14 @@ background-color: #737373;
 /* Constainer additional options */
 #additional-options{
 
-    margin-left: 6%;
+    margin-left: 0%;
     margin-top: 3%;
+}
+
+#additional-options2{
+
+    margin-left: 0%;
+    margin-top: 0.5%;
 }
 
 
