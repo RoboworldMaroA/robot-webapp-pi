@@ -108,7 +108,7 @@ if __name__ == '__main__':
             app = Flask(__name__)
             
             if dist > 10:
-                print("Distance is more that 20cm, so waiting for video and motors")
+                print("Distance is more that 10cm, so I will be streaming a video")
                 # GPIO.output(in1,GPIO.LOW)
                 # GPIO.output(in2,GPIO.HIGH)
                 # p1.ChangeDutyCycle(35)
@@ -121,7 +121,7 @@ if __name__ == '__main__':
                 # time.sleep(0.5)
                 # p2.ChangeDutyCycle(35)
 
-
+                
 
 
                 '''
@@ -161,6 +161,7 @@ if __name__ == '__main__':
                 #main website
                 @app.route('/camera') 
                 def camera():
+                    print(stopStatus)
                     return render_template('./camera.html')
 
                 @app.route('/video_feed')
@@ -219,6 +220,8 @@ if __name__ == '__main__':
                         print("forw 2")
                         dist3 =  distance()
                         print(dist3)
+                        print(stopStatus)
+                        return render_template('./camera.html', dist=dist3)
                     if dist2 < 10:
                         print("too close the obstacle")
                         GPIO.output(in1,GPIO.LOW)
@@ -227,7 +230,7 @@ if __name__ == '__main__':
                         GPIO.output(in4,GPIO.LOW)
                         # dist =  distance()
                         print(dist2)
-                        
+                        print(stopStatus)
                     return render_template('./camera.html', dist=dist2)
 
                 #This is forward second version. First version Robot recognize what is a distance from obstacle in the moment of the pressing the go button
@@ -304,7 +307,7 @@ if __name__ == '__main__':
                     GPIO.output(in4,GPIO.LOW)
                     stopStatus = True
                     dist = 10
-            
+                    print(stopStatus)
                     return render_template('./camera.html', name=username)
                 
                 #REVERSE
