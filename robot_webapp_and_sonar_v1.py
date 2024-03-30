@@ -96,7 +96,8 @@ info = ""
 
 if __name__ == '__main__':
     try:
-        while True:
+        #while True:
+        while stopStatus == False:    
             dist = distance()
             print ("Measured Distance = %.1f cm" % dist)
             time.sleep(1)
@@ -106,7 +107,7 @@ if __name__ == '__main__':
             video = cv2.VideoCapture(0)
             app = Flask(__name__)
             
-            if dist > 40:
+            if dist > 10:
                 print("Distance is more that 20cm, so waiting for video and motors")
                 # GPIO.output(in1,GPIO.LOW)
                 # GPIO.output(in2,GPIO.HIGH)
@@ -403,7 +404,7 @@ if __name__ == '__main__':
 
 
 
-
+                #Camera view
 
                 @app.route('/camera') 
                 def camera_on():
@@ -414,36 +415,375 @@ if __name__ == '__main__':
                 ''' Autodrive '''
 
                 @app.route('/auto-drive')
-                def autoDrive(username=None, post_id=None):
+                def autoDrive(dist=dist, info=info, post_id=None):
                     print("You pressed auto drive")
                     dist = distance()
                     print(dist)
                     print(stopStatus)
-                    while (dist > 20):
+                    if (dist > 10):
                         #right motors forward
                         GPIO.output(in1,GPIO.LOW)
                         GPIO.output(in2,GPIO.HIGH)
-                        p1.ChangeDutyCycle(7)
+                        p1.ChangeDutyCycle(1)
                         #left motors forward very slow
                         GPIO.output(in3,GPIO.HIGH)
                         GPIO.output(in4,GPIO.LOW)
+                        p2.ChangeDutyCycle(1)
+
+                        #autodrive program
+
+                        #Forward
+                        GPIO.output(in1,GPIO.LOW)
+                        GPIO.output(in2,GPIO.HIGH)
+                        GPIO.output(in3,GPIO.LOW)
+                        GPIO.output(in4,GPIO.HIGH)
+                        p1.ChangeDutyCycle(99)
+                        p2.ChangeDutyCycle(99)
+                        
+                        time.sleep(0.15)
+                        p1.ChangeDutyCycle(35)
+                        p2.ChangeDutyCycle(35)
+                        
+                        time.sleep(5)
+                        p1.ChangeDutyCycle(0)
                         p2.ChangeDutyCycle(0)
-                        if(stopStatus == True):
-                            break
-              
-                    print("too close the obstacle in autodrive mode")
-                    p1.ChangeDutyCycle(0)
-                    p2.ChangeDutyCycle(0)
                     
-                    GPIO.output(in1,GPIO.LOW)
-                    GPIO.output(in2,GPIO.LOW)
-                    GPIO.output(in3,GPIO.LOW)
-                    GPIO.output(in4,GPIO.LOW)
-                    dist =  distance()
-                    return render_template('./camera.html', name=username)
+                        #Turn around 2 times turn right
+                        #right motors reverse low speed
+                        GPIO.output(in1,GPIO.HIGH)
+                        GPIO.output(in2,GPIO.LOW)
+                        p1.ChangeDutyCycle(0)
+                        #left motors forvward
+                        GPIO.output(in3,GPIO.LOW)
+                        GPIO.output(in4,GPIO.HIGH)
+                        p2.ChangeDutyCycle(100)
+                        #turn left for 1.5 second
+                        time.sleep(1.4) 
+                        #right motors backward
+                        GPIO.output(in1,GPIO.HIGH)
+                        GPIO.output(in2,GPIO.LOW)
+                        p1.ChangeDutyCycle(90)
+                        #left motors backward
+                        GPIO.output(in3,GPIO.HIGH)
+                        GPIO.output(in4,GPIO.LOW)
+                        p2.ChangeDutyCycle(0)
+                        time.sleep(1.1)
+                        GPIO.output(in1,GPIO.HIGH)
+                        GPIO.output(in2,GPIO.LOW)
+                        p1.ChangeDutyCycle(0)
+                        #left motors forvward
+                        GPIO.output(in3,GPIO.LOW)
+                        GPIO.output(in4,GPIO.HIGH)
+                        p2.ChangeDutyCycle(0)
+                        
+                        
+                        #turn again
+                        #right motors reverse low speed
+                        GPIO.output(in1,GPIO.HIGH)
+                        GPIO.output(in2,GPIO.LOW)
+                        p1.ChangeDutyCycle(0)
+                        #left motors forvward
+                        GPIO.output(in3,GPIO.LOW)
+                        GPIO.output(in4,GPIO.HIGH)
+                        p2.ChangeDutyCycle(100)
+                        #turn left for 1.5 second
+                        time.sleep(1.4) 
+                        #right motors backward
+                        GPIO.output(in1,GPIO.HIGH)
+                        GPIO.output(in2,GPIO.LOW)
+                        p1.ChangeDutyCycle(80)
+                        #left motors backward
+                        GPIO.output(in3,GPIO.HIGH)
+                        GPIO.output(in4,GPIO.LOW)
+                        p2.ChangeDutyCycle(0)
+                        time.sleep(1.1)
+                        GPIO.output(in1,GPIO.HIGH)
+                        GPIO.output(in2,GPIO.LOW)
+                        p1.ChangeDutyCycle(0)
+                        #left motors forvward
+                        GPIO.output(in3,GPIO.LOW)
+                        GPIO.output(in4,GPIO.HIGH)
+                        p2.ChangeDutyCycle(0)
+                        
+                        
+                        #Go Forward
+                        
+                        #Forward
+                        GPIO.output(in1,GPIO.LOW)
+                        GPIO.output(in2,GPIO.HIGH)
+                        GPIO.output(in3,GPIO.LOW)
+                        GPIO.output(in4,GPIO.HIGH)
+                        p1.ChangeDutyCycle(99)
+                        p2.ChangeDutyCycle(99)
+                        
+                        time.sleep(0.15)
+                        p1.ChangeDutyCycle(40)
+                        p2.ChangeDutyCycle(40)
+                        
+                        time.sleep(5)
+                        p1.ChangeDutyCycle(0)
+                        p2.ChangeDutyCycle(0)
+                        
+                        #go backward
+                        #right motors backward
+                        GPIO.output(in1,GPIO.HIGH)
+                        GPIO.output(in2,GPIO.LOW)
+                        p1.ChangeDutyCycle(80)
+                        #left motors backward
+                        GPIO.output(in3,GPIO.HIGH)
+                        GPIO.output(in4,GPIO.LOW)
+                        p2.ChangeDutyCycle(80)
+                        
+                        #wait for 1.5 second
+                        time.sleep(2.2)
+                        p1.ChangeDutyCycle(80)
+                        p2.ChangeDutyCycle(80) 
+                        
+                        #wait for 1.5 second
+                        time.sleep(0.2)
+                        GPIO.output(in1,GPIO.LOW)
+                        GPIO.output(in2,GPIO.LOW)
+                        GPIO.output(in3,GPIO.LOW)
+                        GPIO.output(in4,GPIO.LOW)
+                        
+                        
+                        #Forward Fast
+                        GPIO.output(in1,GPIO.LOW)
+                        GPIO.output(in2,GPIO.HIGH)
+                        GPIO.output(in3,GPIO.LOW)
+                        GPIO.output(in4,GPIO.HIGH)
+                        p1.ChangeDutyCycle(99)
+                        p2.ChangeDutyCycle(99)
+                        
+                        time.sleep(1.0)
+                        p1.ChangeDutyCycle(99)
+                        p2.ChangeDutyCycle(99)
+                        
+                        time.sleep(0.9)
+                        p1.ChangeDutyCycle(0)
+                        p2.ChangeDutyCycle(0)
+
+                        
+                        #stop
+                        #right wheels
+                        p1.ChangeDutyCycle(0)
+                        #left wheels
+                        p2.ChangeDutyCycle(0)
+                        
+                        GPIO.output(in1,GPIO.LOW)
+                        GPIO.output(in2,GPIO.LOW)
+                        GPIO.output(in3,GPIO.LOW)
+                        GPIO.output(in4,GPIO.LOW)
+                        #End Autodrive read distance
+                        dist =  distance()
+                        info = "Autodrive cycle has been completed"
+                        return render_template('./camera.html', dist=dist, info=info)
+
+                        
+                    if (dist < 10):
+                        print("too close the obstacle in autodrive mode")
+                        p1.ChangeDutyCycle(0)
+                        p2.ChangeDutyCycle(0)
+                        
+                        GPIO.output(in1,GPIO.LOW)
+                        GPIO.output(in2,GPIO.LOW)
+                        GPIO.output(in3,GPIO.LOW)
+                        GPIO.output(in4,GPIO.LOW)
+                        dist =  distance()
+                        info = "Too close to the obstacle"
+                        return render_template('./camera.html', dist=dist, info=info)
 
 
 
+
+                '''
+                Autodrive with Emergency Stop
+                I want to stup the cycle. It is long auto program I will be presing stop or extra buton reset and
+                then it will be stopping all motors
+                
+                '''
+
+
+                @app.route('/auto-drive')
+                def autoDrive2(dist=dist, info=info, post_id=None):
+                    print("You pressed auto drive")
+                    dist = distance()
+                    print(dist)
+                    print(stopStatus)
+                  
+                    if (dist > 10):
+                         while stopStatus == False:
+                            #right motors forward
+                            GPIO.output(in1,GPIO.LOW)
+                            GPIO.output(in2,GPIO.HIGH)
+                            p1.ChangeDutyCycle(1)
+                            #left motors forward very slow
+                            GPIO.output(in3,GPIO.HIGH)
+                            GPIO.output(in4,GPIO.LOW)
+                            p2.ChangeDutyCycle(1)
+
+                            #autodrive program
+
+                            #Forward
+                            GPIO.output(in1,GPIO.LOW)
+                            GPIO.output(in2,GPIO.HIGH)
+                            GPIO.output(in3,GPIO.LOW)
+                            GPIO.output(in4,GPIO.HIGH)
+                            p1.ChangeDutyCycle(99)
+                            p2.ChangeDutyCycle(99)
+                            
+                            time.sleep(0.15)
+                            p1.ChangeDutyCycle(35)
+                            p2.ChangeDutyCycle(35)
+                            
+                            time.sleep(5)
+                            p1.ChangeDutyCycle(0)
+                            p2.ChangeDutyCycle(0)
+                        
+                            #Turn around 2 times turn right
+                            #right motors reverse low speed
+                            GPIO.output(in1,GPIO.HIGH)
+                            GPIO.output(in2,GPIO.LOW)
+                            p1.ChangeDutyCycle(0)
+                            #left motors forvward
+                            GPIO.output(in3,GPIO.LOW)
+                            GPIO.output(in4,GPIO.HIGH)
+                            p2.ChangeDutyCycle(100)
+                            #turn left for 1.5 second
+                            time.sleep(1.4) 
+                            #right motors backward
+                            GPIO.output(in1,GPIO.HIGH)
+                            GPIO.output(in2,GPIO.LOW)
+                            p1.ChangeDutyCycle(90)
+                            #left motors backward
+                            GPIO.output(in3,GPIO.HIGH)
+                            GPIO.output(in4,GPIO.LOW)
+                            p2.ChangeDutyCycle(0)
+                            time.sleep(1.1)
+                            GPIO.output(in1,GPIO.HIGH)
+                            GPIO.output(in2,GPIO.LOW)
+                            p1.ChangeDutyCycle(0)
+                            #left motors forvward
+                            GPIO.output(in3,GPIO.LOW)
+                            GPIO.output(in4,GPIO.HIGH)
+                            p2.ChangeDutyCycle(0)
+                            
+                            
+                            #turn again
+                            #right motors reverse low speed
+                            GPIO.output(in1,GPIO.HIGH)
+                            GPIO.output(in2,GPIO.LOW)
+                            p1.ChangeDutyCycle(0)
+                            #left motors forvward
+                            GPIO.output(in3,GPIO.LOW)
+                            GPIO.output(in4,GPIO.HIGH)
+                            p2.ChangeDutyCycle(100)
+                            #turn left for 1.5 second
+                            time.sleep(1.4) 
+                            #right motors backward
+                            GPIO.output(in1,GPIO.HIGH)
+                            GPIO.output(in2,GPIO.LOW)
+                            p1.ChangeDutyCycle(80)
+                            #left motors backward
+                            GPIO.output(in3,GPIO.HIGH)
+                            GPIO.output(in4,GPIO.LOW)
+                            p2.ChangeDutyCycle(0)
+                            time.sleep(1.1)
+                            GPIO.output(in1,GPIO.HIGH)
+                            GPIO.output(in2,GPIO.LOW)
+                            p1.ChangeDutyCycle(0)
+                            #left motors forvward
+                            GPIO.output(in3,GPIO.LOW)
+                            GPIO.output(in4,GPIO.HIGH)
+                            p2.ChangeDutyCycle(0)
+                            
+                            
+                            #Go Forward
+                            
+                            #Forward
+                            GPIO.output(in1,GPIO.LOW)
+                            GPIO.output(in2,GPIO.HIGH)
+                            GPIO.output(in3,GPIO.LOW)
+                            GPIO.output(in4,GPIO.HIGH)
+                            p1.ChangeDutyCycle(99)
+                            p2.ChangeDutyCycle(99)
+                            
+                            time.sleep(0.15)
+                            p1.ChangeDutyCycle(40)
+                            p2.ChangeDutyCycle(40)
+                            
+                            time.sleep(5)
+                            p1.ChangeDutyCycle(0)
+                            p2.ChangeDutyCycle(0)
+                            
+                            #go backward
+                            #right motors backward
+                            GPIO.output(in1,GPIO.HIGH)
+                            GPIO.output(in2,GPIO.LOW)
+                            p1.ChangeDutyCycle(80)
+                            #left motors backward
+                            GPIO.output(in3,GPIO.HIGH)
+                            GPIO.output(in4,GPIO.LOW)
+                            p2.ChangeDutyCycle(80)
+                            
+                            #wait for 1.5 second
+                            time.sleep(2.2)
+                            p1.ChangeDutyCycle(80)
+                            p2.ChangeDutyCycle(80) 
+                            
+                            #wait for 1.5 second
+                            time.sleep(0.2)
+                            GPIO.output(in1,GPIO.LOW)
+                            GPIO.output(in2,GPIO.LOW)
+                            GPIO.output(in3,GPIO.LOW)
+                            GPIO.output(in4,GPIO.LOW)
+                            
+                            
+                            #Forward Fast
+                            GPIO.output(in1,GPIO.LOW)
+                            GPIO.output(in2,GPIO.HIGH)
+                            GPIO.output(in3,GPIO.LOW)
+                            GPIO.output(in4,GPIO.HIGH)
+                            p1.ChangeDutyCycle(99)
+                            p2.ChangeDutyCycle(99)
+                            
+                            time.sleep(1.0)
+                            p1.ChangeDutyCycle(99)
+                            p2.ChangeDutyCycle(99)
+                            
+                            time.sleep(0.9)
+                            p1.ChangeDutyCycle(0)
+                            p2.ChangeDutyCycle(0)
+
+                            
+                            #stop
+                            #right wheels
+                            p1.ChangeDutyCycle(0)
+                            #left wheels
+                            p2.ChangeDutyCycle(0)
+                            
+                            GPIO.output(in1,GPIO.LOW)
+                            GPIO.output(in2,GPIO.LOW)
+                            GPIO.output(in3,GPIO.LOW)
+                            GPIO.output(in4,GPIO.LOW)
+                            #End Autodrive read distance
+                            dist =  distance()
+                            info = "Autodrive cycle has been completed"
+                            return render_template('./camera.html', dist=dist, info=info)
+
+                        
+                    if (dist < 10):
+                        print("too close the obstacle in autodrive mode")
+                        p1.ChangeDutyCycle(0)
+                        p2.ChangeDutyCycle(0)
+                        
+                        GPIO.output(in1,GPIO.LOW)
+                        GPIO.output(in2,GPIO.LOW)
+                        GPIO.output(in3,GPIO.LOW)
+                        GPIO.output(in4,GPIO.LOW)
+                        dist =  distance()
+                        info = "Too close to the obstacle"
+                        return render_template('./camera.html', dist=dist, info=info)
 
 
 
