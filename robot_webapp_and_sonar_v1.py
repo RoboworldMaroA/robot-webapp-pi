@@ -52,7 +52,7 @@ GPIO.output(in4,GPIO.LOW)
 p2=GPIO.PWM(enb,1000)
 p2.start(40)
 
-
+stopStatus = False
 
 
 #setup GPIO fro sonar
@@ -90,6 +90,9 @@ def distance():
 
 dist = distance()
 print ("Measured Distance = %.1f cm" % dist)
+
+
+info = ""
 
 if __name__ == '__main__':
     try:
@@ -151,8 +154,8 @@ if __name__ == '__main__':
 
                 #tell flask what is a main website, webbapp
                 @app.route('/') 
-                def home(username=None, post_id=None):
-                    return render_template('./camera.html', name=username)
+                def home(dist=dist, post_id=None):
+                    return render_template('./camera.html', dist=dist)
 
                 #main website
                 @app.route('/camera') 
@@ -193,21 +196,21 @@ if __name__ == '__main__':
 
                 '''
 
-                #Run the motors in the loop
+                #Run the motors forward and stop if obstacle is 10 cm from the robot then robot wont go
     
                 @app.route('/forward')
-                def forward(username=None, post_id=None):
+                def forward(dist=dist, post_id=None):
                     GPIO.setmode(GPIO.BCM)
                     print("forw 1")
                     dist2 = distance()
                     print(dist2)
-                    if dist2 > 40:
+                    if dist2 > 10:
                         print("run forward -u pressed up")
                         GPIO.output(in1,GPIO.LOW)
                         GPIO.output(in2,GPIO.HIGH)
                         p1.ChangeDutyCycle(35)
                      
-
+                        #speed of the second motor
                         GPIO.output(in3,GPIO.LOW)
                         GPIO.output(in4,GPIO.HIGH)
                         p2.ChangeDutyCycle(35)
@@ -215,19 +218,24 @@ if __name__ == '__main__':
                         print("forw 2")
                         dist3 =  distance()
                         print(dist3)
-                    if dist2 < 20:
+                    if dist2 < 10:
                         print("too close the obstacle")
                         GPIO.output(in1,GPIO.LOW)
                         GPIO.output(in2,GPIO.LOW)
                         GPIO.output(in3,GPIO.LOW)
                         GPIO.output(in4,GPIO.LOW)
                         # dist =  distance()
-                        print(dist)
+                        print(dist2)
                         
-                    return render_template('./camera.html', name=username)
+                    return render_template('./camera.html', dist=dist2)
+
+                #This is forward second version. First version Robot recognize what is a distance from obstacle in the moment of the pressing the go button
+                #I want to add a loop that it recognize all the time. Problem is that it is a function that is executed when we pressed the button go
+                #so it does not checking again what is a distance later, only just go. So I have to add again function that will be reading a new vaue in the loop and
+                # until the distace is bigger then 10 cm or user press stop but in this form robot wont stop
 
                 @app.route('/forward2')
-                def forward2(username=None, post_id=None):
+                def forward2(dist=None, post_id=None):
                     GPIO.setmode(GPIO.BCM)
                     print("display value of the first distance")
                     print(dist)
@@ -236,9 +244,8 @@ if __name__ == '__main__':
                     dist2 = distance()
                     print(dist2)
 
-
-
-                    while dist2 > 21:
+                    print(stopStatus)
+                    while (dist > 20) or (stopStatus == False):
                         print("run forward -u pressed up")
                         GPIO.output(in1,GPIO.LOW)
                         GPIO.output(in2,GPIO.HIGH)
@@ -273,24 +280,41 @@ if __name__ == '__main__':
                     print("Dist4 ")
                     print(dist4)
                         
-                    return render_template('./camera.html', name=username)
+                    return render_template('./camera.html', dist=dist4, )
+
+                # STOP
                 
                 @app.route('/stop')
                 def stop(username=None, post_id=None):
-                    print("run forward -u pressed up")
-                    print("stop - u pressed enter")
+
+                    print("robot stop - u pressed stop")
+                    GPIO.output(in1,GPIO.LOW)
+                    GPIO.output(in2,GPIO.HIGH)
+                    p1.ChangeDutyCycle(0)
+                    
+                    GPIO.output(in3,GPIO.LOW)
+                    GPIO.output(in4,GPIO.HIGH)
+                    p2.ChangeDutyCycle(0)
+
+
                     GPIO.output(in1,GPIO.LOW)
                     GPIO.output(in2,GPIO.LOW)
                     GPIO.output(in3,GPIO.LOW)
                     GPIO.output(in4,GPIO.LOW)
+                    stopStatus = True
+                    dist = 10
+            
                     return render_template('./camera.html', name=username)
+                
+                #REVERSE
+                # Driving a car reverse direction
 
                 @app.route('/backward')
                 def backward(username=None, post_id=None):
                     print("backward - u pressed down")
                     dist = distance()
                     print(dist)
-                    while dist < 40:
+                    if dist > 10:
                         #right motors backward
                         GPIO.output(in1,GPIO.HIGH)
                         GPIO.output(in2,GPIO.LOW)
@@ -299,24 +323,27 @@ if __name__ == '__main__':
                         GPIO.output(in3,GPIO.HIGH)
                         GPIO.output(in4,GPIO.LOW)
                         p2.ChangeDutyCycle(40)
+                        info = "Safe to drive"
+                        dist =  distance()
+                        return render_template('./camera.html', dist=dist, info=info)
+                         
+                    if dist < 10:
+                        print("too close the obstacle")
+                        GPIO.output(in1,GPIO.LOW)
+                        GPIO.output(in2,GPIO.LOW)
+                        GPIO.output(in3,GPIO.LOW)
+                        GPIO.output(in4,GPIO.LOW)
+                        dist =  distance()
+                        info = "Too close to the obstacle"
+                        return render_template('./camera.html', dist=dist, info=info)
 
-         
-                    print("too close the obstacle")
-                    GPIO.output(in1,GPIO.LOW)
-                    GPIO.output(in2,GPIO.LOW)
-                    GPIO.output(in3,GPIO.LOW)
-                    GPIO.output(in4,GPIO.LOW)
-                    dist =  distance()
-                    return render_template('./camera.html', name=username)
-
-
-
+                #TURN LEFT
                 @app.route('/turn_left')
-                def left(username=None, post_id=None):
+                def left(dist=dist, info=info,  post_id=None):
                     print("turn left - u pressed left")
                     dist = distance()
                     print(dist)
-                    while dist > 40:
+                    if dist > 10:
                         #right motors forward
                         GPIO.output(in1,GPIO.LOW)
                         GPIO.output(in2,GPIO.HIGH)
@@ -325,22 +352,31 @@ if __name__ == '__main__':
                         GPIO.output(in3,GPIO.HIGH)
                         GPIO.output(in4,GPIO.LOW)
                         p2.ChangeDutyCycle(8)
-              
-                    print("too close the obstacle")
-                    GPIO.output(in1,GPIO.LOW)
-                    GPIO.output(in2,GPIO.LOW)
-                    GPIO.output(in3,GPIO.LOW)
-                    GPIO.output(in4,GPIO.LOW)
-                    dist =  distance()
-                    return render_template('./camera.html', name=username)
+                        info = "Safe to drive"
+                        return render_template('./camera.html', dist=dist, info=info)
 
+                    
+                    if dist < 10:
+                        print("too close the obstacle")
+                        GPIO.output(in1,GPIO.LOW)
+                        GPIO.output(in2,GPIO.LOW)
+                        GPIO.output(in3,GPIO.LOW)
+                        GPIO.output(in4,GPIO.LOW)
+                        dist =  distance()
+                        info = "Too close to the obstacle"
+                        return render_template('./camera.html', dist=dist, info=info)
+                
+
+                #TURN RIGHT    
+                #This is simple version just go to the right and when you press stop then robot stop.
+                #It store a distance from the obstacle and display info if is safe or not
                 @app.route('/turn_right')
-                def right(username=None, post_id=None):
+                def right(dist=dist, info=info, post_id=None):
 
                     print("turn right - u pressed right")
                     dist = distance()
                     print(dist)
-                    while dist > 40:
+                    if dist > 10:
                         #right motors reverse low speed
                         GPIO.output(in1,GPIO.HIGH)
                         GPIO.output(in2,GPIO.LOW)
@@ -349,19 +385,69 @@ if __name__ == '__main__':
                         GPIO.output(in3,GPIO.LOW)
                         GPIO.output(in4,GPIO.HIGH)
                         p2.ChangeDutyCycle(80) 
+                        info = "Safe to drive"
+                        return render_template('./camera.html', dist=dist, info=info)
+
+                    if dist < 10:
+                        print("too close the obstacle")
+                        GPIO.output(in1,GPIO.LOW)
+                        GPIO.output(in2,GPIO.LOW)
+                        GPIO.output(in3,GPIO.LOW)
+                        GPIO.output(in4,GPIO.LOW)
+                        dist =  distance()
+                        info = "Too close to the obstacle"
+                        return render_template('./camera.html', dist=dist, info=info)
+          
+
+
+
+
+
+
+
+                @app.route('/camera') 
+                def camera_on():
+                    return render_template('./camera.html')
                 
-                    print("too close the obstacle")
+
+
+                ''' Autodrive '''
+
+                @app.route('/auto-drive')
+                def autoDrive(username=None, post_id=None):
+                    print("You pressed auto drive")
+                    dist = distance()
+                    print(dist)
+                    print(stopStatus)
+                    while (dist > 20):
+                        #right motors forward
+                        GPIO.output(in1,GPIO.LOW)
+                        GPIO.output(in2,GPIO.HIGH)
+                        p1.ChangeDutyCycle(7)
+                        #left motors forward very slow
+                        GPIO.output(in3,GPIO.HIGH)
+                        GPIO.output(in4,GPIO.LOW)
+                        p2.ChangeDutyCycle(0)
+                        if(stopStatus == True):
+                            break
+              
+                    print("too close the obstacle in autodrive mode")
+                    p1.ChangeDutyCycle(0)
+                    p2.ChangeDutyCycle(0)
+                    
                     GPIO.output(in1,GPIO.LOW)
                     GPIO.output(in2,GPIO.LOW)
                     GPIO.output(in3,GPIO.LOW)
                     GPIO.output(in4,GPIO.LOW)
                     dist =  distance()
-
                     return render_template('./camera.html', name=username)
 
-                @app.route('/camera') 
-                def camera_on():
-                    return render_template('./camera.html')
+
+
+
+
+
+
 
 
                 '''
@@ -402,7 +488,7 @@ GPIO.output(in3,GPIO.LOW)
 GPIO.output(in4,GPIO.LOW)
 GPIO.cleanup()
 
-#print("use nawigation in menu on the web server to run a car")
+#print("use arrows on the web server to run a car")
 #input("Press enter to continue and open http:..... link what you will se for a second in chromium web broswer")
 
 '''

@@ -33,5 +33,5 @@ function go(e){
   
   e.preventDefault();
   console.log("GO GO");
-  window.location.href='forward2';
+  window.location.href='forward';
 }

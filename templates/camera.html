@@ -70,31 +70,26 @@
 
                  <div id="robot-controller">
 
-                     <div><a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="auto-drive"> Auto Drive </a>
+                     <div>
+                        
+                        <button class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onclick="window.location.href='auto-drive'" id="auto-drive"> Auto Drive </button>
                          <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="control-by-keyboard"> Control by keyboard </a>
                      </div>
+
                      <div id="topPartDrivingController">
                         <div id="text-in-button-go"> </div> 
                         <!-- <button type="button" class="button-forward" onclick="window.location.href='forward'">  GO </button> -->
-                        <button type="button" id='go' class="button-forward">             </button>
-                        
-                    
-                      
+                        <button type="button" id='go' class="button-forward"> </button>
                     </div>
 
                      <div id="middlePartDrivingController">
-
-
                          <!-- <button type="button" class="button-left" onclick="window.location.href='turn_left'"> <a href="turn_left" > L </a></button> -->
                          <button class="button-left" onclick="window.location.href='turn_left'"> </button>
                          <button type="button" class = "button-stop" onclick="window.location.href='stop'"></button> 
-                        
                          <button type="button" class="button-right" onclick="window.location.href='turn_right'"> </button>
-
                      </div><!-- end middle div-->
 
-                     <div id="bottomPartDrivingController">
-                        
+                     <div id="bottomPartDrivingController">   
                          <button type="button" class="button-down" onclick="window.location.href='backward'" > </button>
                      </div>
 
@@ -119,7 +114,7 @@
                      
                      <!-- this part for camera display in the window-->
                      <p>
-                     <img src="{{ url_for('video_feed') }}" style="width:90%;">
+                     <img src="{{ url_for('video_feed') }}" style="width:95%;">
                      </p>
 
                  </div>
@@ -171,54 +166,57 @@
          </div><!-- end row-->
      </div><!-- end of container first part of application, controller robot, camera view, controller camera-->
 
+
+     <!-- Display data from the sonar-->
+     <div class="container-fluid" id="display-sonar-reading">
+
+        <div class="container" id="sonar-data">
+
+        <p>Distance is: {{dist}} cm. {{info}}</p>
+
+        </div>
+    </div>
+
 <!-- additional buttons with speaker on off, speed , lights, sensor status and intelligent programmed options-->
      <div class="container-fluid" id="additional-options">
        
          <div class="container">
-            <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="speaker-on-off"> Chat </a>
+            <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="chat"> Chat </a>
             <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="light-on-off"> Lights On/Off </a>
             <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="auto-light-on-off"> Auto Lights On/Off </a>
             <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="light-on-off"> Sonar - Measure distance </a>
             <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="light-on-off"> Lidar - Measure distance </a>
             <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="speaker-on-off"> Line follower </a>
             <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="light-on-off"> Follow object</a>
-       
-
-
-        
         </div>
 
         <div class="container-fluid" id="additional-options2">
-       
             <div class="container">
                <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="speaker-on-off"> Acellerometer/Gyroscope </a>
                <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="light-on-off"> Lights On/Off </a>
                <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="auto-light-on-off"> Auto Lights On/Off </a>
                <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="light-on-off"> Sonar - Measure distance </a>
                <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="light-on-off"> Lidar - Measure distance </a>
-               <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="speaker-on-off"> Line follower </a>
-               <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="light-on-off"> Follow object</a>
-          
-   
-   
-           
+               <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="speaker-on-off"> Line follower </a>        
            </div>
 
-
-
-
+           <div class="container-fluid" id="additional-options2"> 
+            <div class="container">
+               <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="speaker-on-off"> Follow Object </a>
+               <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="light-on-off"> Segmentation </a>
+               <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="auto-light-on-off"> Clasification </a>
+               <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="light-on-off"> Object Detection </a>
+               <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="light-on-off"> Conrolled by gestures </a>
+               <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="speaker-on-off"> Recognize object 2 </a>
+               <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" id="light-on-off"> Recognize object 3</a>
+           </div>
      </div>
 
 
-
-
      </div>
-  <!-- description web app -->
-     
+  <!-- description web app -->   
    <div class="container-fluid" id="main">
              <p>Another paragrapth</p>
-
-
    </div>
 
         <footer class="col-lg-12 col-sm-offset-1 col-sm-12 col-md-offset-0 col-md-12" id="footer">

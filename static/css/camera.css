@@ -383,7 +383,16 @@ a {
  }
 
 
-   
+ /* Display data from the sonar */
+
+ #display-sonar-reading{
+    color: white; 
+ }
+
+
+
+
+
 
 
 /* Part with the on/off buttons */
