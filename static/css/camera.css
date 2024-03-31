@@ -15,6 +15,23 @@ margin-bottom: 5%;
 
 }
 
+
+/* EMERGENCY STOP */
+
+#emergency-stop-button{
+
+    background-color: #737373;
+    border: none;
+    margin-bottom: 2%;
+    color: red;
+}
+
+
+
+
+
+
+
 /* ############################################### */
 /* buttons for driving robot  */
 #auto-drive{

@@ -12,7 +12,7 @@ import cv2
 import time
 from picamera import PiCamera
 from time import sleep
-
+from running_two_servos import homePositionHorizontalServo, moveHorizontalServoUpOrDown
 # GPIO.cleanup()
 GPIO.setwarnings(False)
 
@@ -53,7 +53,7 @@ p2=GPIO.PWM(enb,1000)
 p2.start(40)
 
 stopStatus = False
-
+pressStopQuantity = 0
 
 #setup GPIO fro sonar
 #set GPIO direction (IN / OUT)
@@ -309,6 +309,33 @@ if __name__ == '__main__':
                     dist = 10
                     print(stopStatus)
                     return render_template('./camera.html', name=username)
+
+
+
+
+                # STOP IN LOOP for 10 second calles: Full Stop
+                # I want to use this because I want to be sure that robot not going in the emergency case 
+                #If there is another proces thatwas applied for a longer period of tiem then it might be still workig
+
+                def shutdown_server():
+                    func = request.environ.get('werkzeug.server.shutdown')
+                    if func is None:
+                        raise RuntimeError('Not running with the Werkzeug Server')
+                    func()
+
+
+
+                
+                @app.get('/emergency-stop')
+                def emergencyStop():
+                    print("robot stop - u pressed Emergecy Stop")
+                     
+                    shutdown_server()
+                
+                    return "Quiting"
+
+                        #return render_template('./camera.html', name=username)
+                
                 
                 #REVERSE
                 # Driving a car reverse direction
@@ -790,7 +817,14 @@ if __name__ == '__main__':
 
 
 
+            @app.route('/move-horizontal-servo-up-or-down')  
+            def stop(username=None, post_id=None):
 
+                print("move servo up or down")
+                homePositionHorizontalServo()
+                moveHorizontalServoUpOrDown()
+               
+                return render_template('./camera.html', name=username)
 
 
                 '''
