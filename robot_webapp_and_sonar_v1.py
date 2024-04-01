@@ -12,7 +12,7 @@ import cv2
 import time
 from picamera import PiCamera
 from time import sleep
-from running_two_servos import homePositionHorizontalServo, moveHorizontalServoUpOrDown
+#from running_two_servos_web_app import homePositionHorizontalServo, moveHorizontalServoUpOrDown
 # GPIO.cleanup()
 GPIO.setwarnings(False)
 
@@ -33,6 +33,13 @@ enb = 22
 GPIO_TRIGGER = 20
 GPIO_ECHO = 21
 
+# VARIABLE FOR SERVO USED IN MOVING CAMERA
+outputForServoCameraVertically = 12 #servo up and down
+outputForServoCameraHorizontally = 16 #servo up and down
+
+inputAngleServoCameraHorizontally = 6 #SET HA HOME POSITION HORIZOTAL SERVO
+
+
 #Setup for DC motors
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(in1,GPIO.OUT)
@@ -51,6 +58,16 @@ GPIO.output(in3,GPIO.LOW)
 GPIO.output(in4,GPIO.LOW)
 p2=GPIO.PWM(enb,1000)
 p2.start(40)
+
+#SETUP FOR SERVO USED IN CAMERA
+GPIO.setup(outputForServoCameraVertically,GPIO.OUT)
+GPIO.setup(outputForServoCameraHorizontally,GPIO.OUT)
+angleServo1 = GPIO.PWM(outputForServoCameraVertically,51)
+angleServo2 = GPIO.PWM(outputForServoCameraHorizontally,51)
+angleServo1.ChangeDutyCycle(0.0)
+angleServo2.ChangeDutyCycle(0.0)
+
+
 
 stopStatus = False
 pressStopQuantity = 0
@@ -97,7 +114,7 @@ info = ""
 if __name__ == '__main__':
     try:
         #while True:
-        while stopStatus == False:    
+        while True:    
             dist = distance()
             print ("Measured Distance = %.1f cm" % dist)
             time.sleep(1)
@@ -634,7 +651,7 @@ if __name__ == '__main__':
                 '''
 
 
-                @app.route('/auto-drive')
+                @app.route('/auto-drive2')
                 def autoDrive2(dist=dist, info=info, post_id=None):
                     print("You pressed auto drive")
                     dist = distance()
@@ -817,25 +834,96 @@ if __name__ == '__main__':
 
 
 
-            @app.route('/move-horizontal-servo-up-or-down')  
-            def stop(username=None, post_id=None):
+                #   MOVING CAMERA
+                
+                 #Home position in front of the car
+                def homePositionHorizontalServo():
+                    # angleServo1 = GPIO.PWM(outputForServoCameraVertically,51)
+                    # angleServo2 = GPIO.PWM(outputForServoCameraHorizontally,51)
+                    angleServo1.ChangeDutyCycle(0.0)
+                    angleServo2.ChangeDutyCycle(0.0)
+                    angleServo1.start(6.5)
+                    time.sleep(1)
+                    angleServo1.stop() 
+                    angleServo2.stop() 
 
-                print("move servo up or down")
-                homePositionHorizontalServo()
-                moveHorizontalServoUpOrDown()
-               
-                return render_template('./camera.html', name=username)
+                #homePositionHorizontalServo()
 
 
-                '''
-                @app.route('/controller.html') 
-                def index(username=None, post_id=None):
-                    return render_template('./controller.html', name=username)
-                '''
+                def inputValueForHorizontalServo():
+                    #input value best from 4 to 8
+                    inputAngleServoCameraHorizontallyString = input("Please enter a string:\n")
+                    inputAngleServoCameraHorizontally = float(inputAngleServoCameraHorizontallyString)
 
+                    # Move camera to the home position
+                    angleServo1.ChangeDutyCycle(0.0)
+                    angleServo2.ChangeDutyCycle(0.0)
+
+   
+                def moveHorizontalServoUp():
+                    print("Move camera up")
+
+                    angleServo1.start(7.5)
+                    time.sleep(1)
+                    # clean servos
+                    angleServo1.stop() 
+                    angleServo2.stop() 
+
+                
+                def moveHorizontalServoDown():
+                    print("Move camera down")
+                    #homePositionHorizontalServo()
+
+                    angleServo1.start(5.5)
+                    time.sleep(1)
+                    # clean servos
+                    angleServo1.stop() 
+                    angleServo2.stop() 
+
+
+                 # ROUTE FOR MVE CAMERA TO HOME POSITION
+                @app.route('/move-horizontal-servo-home')  
+                def moveHorizontalServoHomeRoute(username=None, post_id=None):
+
+                    print("Move CAMERA HOME ")
+                    homePositionHorizontalServo()
+                
+                    return render_template('./camera.html', name=username)
+
+
+
+                # ROUTE FOR MOVE CAMERA UP
+                @app.route('/move-horizontal-servo-up')  
+                def moveHorizontalServoUpRoute(username=None, post_id=None):
+
+                    print("Move CAMERA UP ")
+                    #homePositionHorizontalServo()
+                    #inputValueForHorizontalServo()
+                    moveHorizontalServoUp()
+                
+                    return render_template('./camera.html', name=username)
+                
+                # ROUTE FOR MOVE CAMERA DOWN
+                @app.route('/move-horizontal-servo-down')  
+                def moveHorizontalServoDownRoute(username=None, post_id=None):
+
+                    print("Move CAMERA DOWN ")
+                    #homePositionHorizontalServo()
+                    #inputValueForHorizontalServo()
+                    moveHorizontalServoDown()
+                
+                    return render_template('./camera.html', name=username)
+
+
+                    '''
+                    @app.route('/controller.html') 
+                    def index(username=None, post_id=None):
+                        return render_template('./controller.html', name=username)
+                    '''
+                # It will run the server and execute function for streaming video
                 app.run(host='0.0.0.0', port='5000', debug=False)
 
-                # GPIO.cleanup()
+                    # GPIO.cleanup()
             
             #if robot distance from the ostacle is less then 20cm then stop the motors
             
@@ -844,6 +932,9 @@ if __name__ == '__main__':
             GPIO.output(in2,GPIO.LOW)
             GPIO.output(in3,GPIO.LOW)
             GPIO.output(in4,GPIO.LOW)
+             # clean servos
+            angleServo1.stop() 
+            angleServo2.stop() 
 
 
         # Reset by pressing CTRL + C
@@ -855,6 +946,9 @@ if __name__ == '__main__':
         GPIO.output(in2,GPIO.LOW)
         GPIO.output(in3,GPIO.LOW)
         GPIO.output(in4,GPIO.LOW)
+         # clean servos
+        angleServo1.stop() 
+        angleServo2.stop() 
         GPIO.cleanup()
 
 
@@ -863,6 +957,10 @@ GPIO.output(in1,GPIO.LOW)
 GPIO.output(in2,GPIO.LOW)
 GPIO.output(in3,GPIO.LOW)
 GPIO.output(in4,GPIO.LOW)
+
+ # clean servos
+angleServo1.stop() 
+angleServo2.stop() 
 GPIO.cleanup()
 
 #print("use arrows on the web server to run a car")
