@@ -62,10 +62,10 @@ p2.start(40)
 #SETUP FOR SERVO USED IN CAMERA
 GPIO.setup(outputForServoCameraVertically,GPIO.OUT)
 GPIO.setup(outputForServoCameraHorizontally,GPIO.OUT)
-angleServo1 = GPIO.PWM(outputForServoCameraVertically,51)
-angleServo2 = GPIO.PWM(outputForServoCameraHorizontally,51)
-angleServo1.ChangeDutyCycle(0.0)
-angleServo2.ChangeDutyCycle(0.0)
+angleServo1 = GPIO.PWM(outputForServoCameraVertically,50)
+angleServo2 = GPIO.PWM(outputForServoCameraHorizontally,50)
+angleServo1.start(0.0)
+angleServo2.start(0.0)
 
 
 
@@ -838,18 +838,15 @@ if __name__ == '__main__':
                 
                  #Home position in front of the car
                 def homePositionHorizontalServo():
-                    # angleServo1 = GPIO.PWM(outputForServoCameraVertically,51)
-                    # angleServo2 = GPIO.PWM(outputForServoCameraHorizontally,51)
+                    angleServo1.ChangeDutyCycle(6.5)
+                    angleServo2.ChangeDutyCycle(7.3)
+                    
+                    time.sleep(0.1)
                     angleServo1.ChangeDutyCycle(0.0)
                     angleServo2.ChangeDutyCycle(0.0)
-                    angleServo1.start(6.5)
-                    time.sleep(1)
-                    angleServo1.stop() 
-                    angleServo2.stop() 
+                   
 
-                #homePositionHorizontalServo()
-
-
+                #Adjust Home position horizontal servo
                 def inputValueForHorizontalServo():
                     #input value best from 4 to 8
                     inputAngleServoCameraHorizontallyString = input("Please enter a string:\n")
@@ -859,48 +856,65 @@ if __name__ == '__main__':
                     angleServo1.ChangeDutyCycle(0.0)
                     angleServo2.ChangeDutyCycle(0.0)
 
-   
+                #move camera up
                 def moveHorizontalServoUp():
                     print("Move camera up")
-
-                    angleServo1.start(7.5)
-                    time.sleep(1)
-                    # clean servos
-                    angleServo1.stop() 
-                    angleServo2.stop() 
-
+                    angleServo1.ChangeDutyCycle(7.5)
+                    angleServo2.ChangeDutyCycle(0)
+                   #wait a moment and stop jumping a servos
+                    time.sleep(0.2)
+                    angleServo1.ChangeDutyCycle(0.0)
+                    angleServo2.ChangeDutyCycle(0.0)
                 
+                # move camera down
                 def moveHorizontalServoDown():
                     print("Move camera down")
-                    #homePositionHorizontalServo()
+                    # move servo one a bit lower
+                    angleServo1.ChangeDutyCycle(5.5)
+                    angleServo2.ChangeDutyCycle(0.0)
+                  
+                    #wait a moment and stop jumping a servos
+                    time.sleep(0.2)
+                    angleServo1.ChangeDutyCycle(0.0)
+                    angleServo2.ChangeDutyCycle(0.0)
+                  
+                # SECOND SERVO - FUNCTION USED TO MOVE CAMERA LEFT AND RIGHT
 
-                    angleServo1.start(5.5)
-                    time.sleep(1)
-                    # clean servos
-                    angleServo1.stop() 
-                    angleServo2.stop() 
+                #move camera LEFT
+                def moveVerticalServoLeft():
+                    print("Move camera left")
+                    angleServo1.ChangeDutyCycle(0)
+                    angleServo2.ChangeDutyCycle(9)
+                   #wait a moment and stop jumping a servos
+                    time.sleep(0.2)
+                    angleServo1.ChangeDutyCycle(0.0)
+                    angleServo2.ChangeDutyCycle(0.0)
+
+                    #move camera RIGHT
+                def moveVerticalServoRight():
+                    print("Move camera RIGHT")
+                    angleServo1.ChangeDutyCycle(0)
+                    angleServo2.ChangeDutyCycle(6)
+                   #wait a moment and stop jumping a servos
+                    time.sleep(0.2)
+                    angleServo1.ChangeDutyCycle(0.0)
+                    angleServo2.ChangeDutyCycle(0.0)    
 
 
-                 # ROUTE FOR MVE CAMERA TO HOME POSITION
+                #************   ROUTES   ***********************************
+                # ROUTE FOR MOVE CAMERA TO THE HOME POSITION
                 @app.route('/move-horizontal-servo-home')  
                 def moveHorizontalServoHomeRoute(username=None, post_id=None):
-
                     print("Move CAMERA HOME ")
-                    homePositionHorizontalServo()
-                
+                    homePositionHorizontalServo()      
                     return render_template('./camera.html', name=username)
-
 
 
                 # ROUTE FOR MOVE CAMERA UP
                 @app.route('/move-horizontal-servo-up')  
                 def moveHorizontalServoUpRoute(username=None, post_id=None):
-
                     print("Move CAMERA UP ")
-                    #homePositionHorizontalServo()
-                    #inputValueForHorizontalServo()
                     moveHorizontalServoUp()
-                
                     return render_template('./camera.html', name=username)
                 
                 # ROUTE FOR MOVE CAMERA DOWN
@@ -914,6 +928,20 @@ if __name__ == '__main__':
                 
                     return render_template('./camera.html', name=username)
 
+                # *** VERTICAL SERVO MOVE CAMERA LEFT AND RIGHT ROUTES ***
+                # ROUTE FOR MOVE CAMERA LEFT
+                @app.route('/move-vertical-servo-left')  
+                def moveVerticalServoLeftRoute(username=None, post_id=None):
+                    print("Move CAMERA LEFT")
+                    moveVerticalServoLeft()
+                    return render_template('./camera.html', name=username)
+                
+                # ROUTE FOR MOVE CAMERA RIGHT
+                @app.route('/move-vertical-servo-right')  
+                def moveVerticalServoRightRoute(username=None, post_id=None):
+                    print("Move CAMERA RIGHT")
+                    moveVerticalServoRight()
+                    return render_template('./camera.html', name=username)
 
                     '''
                     @app.route('/controller.html') 

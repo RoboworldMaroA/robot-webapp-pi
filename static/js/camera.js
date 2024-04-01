@@ -96,3 +96,34 @@ function moveHorizontalServoDown(e){
 }
 
 
+//MOVE CAMERA LEFT
+// Variable used to get a value from the button 
+const MOVE_SERVO_LEFT = document.getElementById('move-vertical-servo-left');
+
+// wait for click and execute function moveHorizontalServoUporDwon()
+MOVE_SERVO_LEFT.addEventListener('click', e => moveVerticalServoLeft(e));
+
+//Function go used to activate FLASK rout forrward and prevent refresh a page
+function moveVerticalServoLeft(e){
+  
+  e.preventDefault();
+  console.log("Move camera left");
+  // Triger route at the backend on this address
+  window.location.href='move-vertical-servo-left';
+}
+
+//MOVE CAMERA RIGHT
+// Variable used to get a value from the button 
+const MOVE_SERVO_RIGHT = document.getElementById('move-vertical-servo-right');
+
+// wait for click and execute function 
+MOVE_SERVO_RIGHT.addEventListener('click', e => moveVerticalServoRight(e));
+
+//Function go used to activate FLASK rout forrward and prevent refresh a page
+function moveVerticalServoRight(e){
+  
+  e.preventDefault();
+  console.log("Move camera right");
+  // Triger route at the backend on this address
+  window.location.href='move-vertical-servo-right';
+}
