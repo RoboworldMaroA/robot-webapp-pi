@@ -127,3 +127,11 @@ function moveVerticalServoRight(e){
   // Triger route at the backend on this address
   window.location.href='move-vertical-servo-right';
 }
+
+
+
+
+//Read data from flask
+
+
+

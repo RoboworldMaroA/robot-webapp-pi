@@ -36,14 +36,18 @@ margin-bottom: 5%;
 /* buttons for driving robot  */
 #auto-drive{
     border: none;
-    margin-right: 3%;
+    margin-right: 2%;
     background-color: #737373;
+    padding-right: 6%;
+    padding-left: 6%;
 }
 
 
 #control-by-keyboard{
     border: none;
     background-color: #737373;
+    padding-right: 6%;
+    padding-left: 6%;
 }
 
 
@@ -54,17 +58,17 @@ margin-bottom: 5%;
 }
 
 #topPartDrivingController{
-    padding-left: 5.0em;
+    padding-left: 7.0em;
     
 }
 
 #middlePartDrivingController{
-    padding-left: 2.4em;
+    padding-left: 4.4em;
    
 }
 
 #bottomPartDrivingController{
-    padding-left:5.0em;
+    padding-left:7.0em;
     
 }
 
@@ -195,8 +199,10 @@ margin-bottom: 5%;
 
 #camera-button{
     border: none;
-    margin-right: 5%;
+    margin-right: 2%;
     margin-bottom: 0%;
+    padding-left: 6%;
+    padding-right: 6%;
     background-color: #737373; 
 }
 
@@ -204,19 +210,21 @@ margin-bottom: 5%;
     border: none;
     margin-left: 0%;
     margin-bottom: 0%;
+    padding-left: 6%;
+    padding-right: 6%;
     background-color: #737373; 
 }
 
 #top-part-camera{
-    padding-left: 6.2em;
+    padding-left: 7.2em;
 }
 
 #middle-part-camera{
-    padding-left: 3.5em;
+    padding-left: 4.5em;
 }
 
 #bottom-part-camera{
-    padding-left:6.2em;
+    padding-left:7.2em;
 }
 
 
@@ -339,14 +347,18 @@ margin-bottom: 5%;
     #slow{
         border: none;
         background-color: #737373;
-        margin-right: 9%;
+        margin-right: 2%;
+        padding-right: 8%;
+        padding-left: 8%;
     }
 
     #normal{
 
         background-color: #737373;
         border: none;
-        margin-right: 9%;
+        margin-right: 2%;
+        padding-right: 8%;
+        padding-left: 8%;
     }
 
 
@@ -354,6 +366,8 @@ margin-bottom: 5%;
 
         background-color: #737373;
         border: none;
+        padding-right: 8%;
+        padding-left: 8%;
     }
 
 
@@ -369,14 +383,18 @@ margin-bottom: 5%;
 
         background-color: #737373;
         border: none;
-        margin-right: 9%;
+        margin-right: 2%;
+        padding-right: 8%;
+        padding-left: 8%;
     }
 
     #camera-normal{
 
         background-color: #737373;
         border: none;
-        margin-right: 9%;
+        margin-right: 2%;
+        padding-right: 8%;
+        padding-left: 8%;
     }
 
 
@@ -384,6 +402,8 @@ margin-bottom: 5%;
 
         background-color: #737373;
         border: none;
+        padding-right: 8%;
+        padding-left: 8%;
     }
 
 

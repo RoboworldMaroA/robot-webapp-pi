@@ -841,7 +841,7 @@ if __name__ == '__main__':
                     angleServo1.ChangeDutyCycle(6.5)
                     angleServo2.ChangeDutyCycle(7.3)
                     
-                    time.sleep(0.1)
+                    time.sleep(0.2)
                     angleServo1.ChangeDutyCycle(0.0)
                     angleServo2.ChangeDutyCycle(0.0)
                    
@@ -904,44 +904,45 @@ if __name__ == '__main__':
                 #************   ROUTES   ***********************************
                 # ROUTE FOR MOVE CAMERA TO THE HOME POSITION
                 @app.route('/move-horizontal-servo-home')  
-                def moveHorizontalServoHomeRoute(username=None, post_id=None):
+                def moveHorizontalServoHomeRoute(positionHorizontalCamera = "Home", positionVerticalCamera = " "):
                     print("Move CAMERA HOME ")
                     homePositionHorizontalServo()      
-                    return render_template('./camera.html', name=username)
+                    return render_template('./camera.html', positionHorizontalCamera = positionHorizontalCamera, positionVericalCamera = positionVerticalCamera)
 
 
                 # ROUTE FOR MOVE CAMERA UP
                 @app.route('/move-horizontal-servo-up')  
-                def moveHorizontalServoUpRoute(username=None, post_id=None):
+                def moveHorizontalServoUpRoute(angleHorizontalServo=None, positionHorizontalCamera="Up"):
                     print("Move CAMERA UP ")
+                    angleHorizontalServo = 9
                     moveHorizontalServoUp()
-                    return render_template('./camera.html', name=username)
+                    return render_template('./camera.html', angleHorizontalServo=angleHorizontalServo, positionHorizontalCamera = positionHorizontalCamera)
                 
                 # ROUTE FOR MOVE CAMERA DOWN
                 @app.route('/move-horizontal-servo-down')  
-                def moveHorizontalServoDownRoute(username=None, post_id=None):
+                def moveHorizontalServoDownRoute(positionHorizontalCamera = "Down", post_id=None):
 
                     print("Move CAMERA DOWN ")
                     #homePositionHorizontalServo()
                     #inputValueForHorizontalServo()
                     moveHorizontalServoDown()
                 
-                    return render_template('./camera.html', name=username)
+                    return render_template('./camera.html', positionHorizontalCamera = positionHorizontalCamera)
 
                 # *** VERTICAL SERVO MOVE CAMERA LEFT AND RIGHT ROUTES ***
                 # ROUTE FOR MOVE CAMERA LEFT
                 @app.route('/move-vertical-servo-left')  
-                def moveVerticalServoLeftRoute(username=None, post_id=None):
+                def moveVerticalServoLeftRoute(positionVerticalCamera = "Left", post_id=None):
                     print("Move CAMERA LEFT")
                     moveVerticalServoLeft()
-                    return render_template('./camera.html', name=username)
+                    return render_template('./camera.html', positionVerticalCamera = positionVerticalCamera)
                 
                 # ROUTE FOR MOVE CAMERA RIGHT
                 @app.route('/move-vertical-servo-right')  
-                def moveVerticalServoRightRoute(username=None, post_id=None):
+                def moveVerticalServoRightRoute(positionVerticalCamera = "Right", post_id=None):
                     print("Move CAMERA RIGHT")
                     moveVerticalServoRight()
-                    return render_template('./camera.html', name=username)
+                    return render_template('./camera.html', positionVerticalCamera = positionVerticalCamera)
 
                     '''
                     @app.route('/controller.html') 
