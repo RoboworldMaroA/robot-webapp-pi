@@ -431,12 +431,18 @@ a {
 
 
 
+/* Container with additional options */
+#additional-options{
+
+    margin-left: 0%;
+    margin-top: 3%;
+}
+
+
 
 /* Part with the on/off buttons */
 
-
-
-#speaker-on-off{
+#chat{
     border: none;
     background-color: #737373;
 
@@ -452,21 +458,156 @@ a {
 background-color: #737373; 
 }
 
+#measure-distance-sonar{
+    border: none;
+    background-color: #737373;
 
-
-
-/* Constainer additional options */
-#additional-options{
-
-    margin-left: 0%;
-    margin-top: 3%;
 }
+
+#lidar-sharp-measure-distance{
+    border: none;
+    background-color: #737373;
+
+}
+
+#line-follower{
+    border: none;
+    background-color: #737373;
+
+}
+
+
+#voice-recognition{
+    border: none;
+    background-color: #737373;
+
+}
+
+#speak-text{
+    border: none;
+    background-color: #737373;
+
+}
+
+
+
+
+
+/* Container with additional options 2nd row */
+
 
 #additional-options2{
 
     margin-left: 0%;
     margin-top: 0.5%;
 }
+
+
+#accelerometer-gyroscope{
+    border: none;
+    background-color: #737373;
+
+}
+#segmentation{
+    border: none;
+    background-color: #737373;
+
+}
+#clasification{
+    border: none;
+    background-color: #737373;
+
+}
+
+#face-recognition{
+    border: none;
+    background-color: #737373;
+
+}
+
+#controlling-by-getures-in-python{
+    border: none;
+    background-color: #737373;
+
+}
+
+#counting-objects{
+    border: none;
+    background-color: #737373;
+
+}
+
+#follow-object{
+    border: none;
+    background-color: #737373;
+
+}
+
+
+
+/* Container with additional options 3rd row */
+#additional-options3{
+
+    margin-left: 0%;
+    margin-top: 0.5%;
+}
+
+
+#vision-system-logitech-camera{
+    border: none;
+    background-color: #737373;
+
+}
+
+
+#segmentation-in-javascript{
+    border: none;
+    background-color: #737373;
+
+}
+
+#claification-in-javascript{
+    border: none;
+    background-color: #737373;
+
+}
+
+
+#object-detection-in-javascript{
+    border: none;
+    background-color: #737373;
+
+}
+
+#controlling-by-gestures-in-javascript{
+    border: none;
+    background-color: #737373;
+
+}
+
+
+
+
+/* Container with additional options 4th row */
+#additional-options4{
+
+    margin-left: 0%;
+    margin-top: 0.5%;
+}
+
+
+#recognize-objects-yolo8{
+    border: none;
+    background-color: #737373;
+
+}
+#posture-recognize{
+    border: none;
+    background-color: #737373;
+
+}
+
+
 
 
 
