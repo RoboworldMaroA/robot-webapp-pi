@@ -129,7 +129,21 @@ function moveVerticalServoRight(e){
 }
 
 
+//MEASURE DISTANCE USING SONAR
+// Variable used to get a value from the button 
+const MEASURE_DISTANCE_USING_SONAR = document.getElementById('measure-distance-sonar');
 
+// wait for click and execute function 
+MEASURE_DISTANCE_USING_SONAR.addEventListener('click', e => measureDistanceUsingSonar(e));
+
+//Function go used to activate FLASK rout forrward and prevent refresh a page
+function measureDistanceUsingSonar(e){
+  
+  e.preventDefault();
+  console.log("Measuring distance");
+  // Triger route at the backend on this address
+  window.location.href='measure-distance-sonar';
+}
 
 //Read data from flask
 
