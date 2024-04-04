@@ -309,7 +309,7 @@ if __name__ == '__main__':
                 # STOP
                 
                 @app.route('/stop')
-                def stop(username=None, post_id=None):
+                def stop(dist=None, post_id=None):
 
                     print("robot stop - u pressed stop")
                     GPIO.output(in1,GPIO.LOW)
@@ -326,9 +326,11 @@ if __name__ == '__main__':
                     GPIO.output(in3,GPIO.LOW)
                     GPIO.output(in4,GPIO.LOW)
                     stopStatus = True
-                    dist = 10
+
+                    dist =  int(distance())
+                    # dist = 10
                     print(stopStatus)
-                    return render_template('./camera.html', name=username)
+                    return render_template('./camera.html', dist=dist)
 
 
 
@@ -336,6 +338,7 @@ if __name__ == '__main__':
                 # STOP IN LOOP for 10 second calles: Full Stop
                 # I want to use this because I want to be sure that robot not going in the emergency case 
                 #If there is another proces thatwas applied for a longer period of tiem then it might be still workig
+                # NOT WORKING PROPERLY
 
                 def shutdown_server():
                     func = request.environ.get('werkzeug.server.shutdown')

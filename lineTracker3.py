@@ -3,6 +3,7 @@
 #This applicaion is recognise line using camera pi
 # activate virtual env for webapp_robot and run comand python lineTracker3.py
 #This version is 28Jan2024
+#Marek Augustyn - Roboworld.pl
 
 from picamera.array import PiRGBArray
 import curses
